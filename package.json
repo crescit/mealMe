@@ -4,11 +4,27 @@
   "description": "web app built on the mern stack for the food space",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [
     "meals"
   ],
   "author": "Josh Jaquez",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "body-parser": "1.18.3",
+    "concurrently": "4.0.1",
+    "express": "4.16.4",
+    "jsonwebtoken": "8.3.0",
+    "mongoose": "5.3.7",
+    "nodemon": "1.18.5",
+    "passport": "0.4.0",
+    "passport-jwt": "4.0.0",
+    "validator": "10.8.0"
+  }
 }
