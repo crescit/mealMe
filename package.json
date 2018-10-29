@@ -1,0 +1,14 @@
+{
+  "name": "mealme",
+  "version": "1.0.0",
+  "description": "web app built on the mern stack for the food space",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "meals"
+  ],
+  "author": "Josh Jaquez",
+  "license": "MIT"
+}
