@@ -3,11 +3,28 @@ const express = require('express');
 const router = express.Router();
 const Recipe = require('../../models/Recipe');
 const validateRecipe = require('../../validation/recipes');
+var admin = require('firebase-admin');
+
+
+var admin = require('firebase-admin');
+var serviceAccount = require('../../config/mealme-9fb07-firebase-adminsdk-hev5f-6726b0810b.json');
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: 'https://mealme-9fb07.firebaseio.com'
+});
+
 // @route   GET api/recipes/test
 // @desc    Tests recipe route
 // @access  Public
-router.get('/test', (req, res) => {
-    return res.json({success: "success"});
+router.post('/test', (req, res) => {
+    token = req.body.token;
+
+    admin.auth().verifyIdToken(token).then(decoded => {
+        var uid = decoded.uid;
+        return res.json({uid: uid});
+    }).catch({error: 'error verifying token'});
+
+
 });
 
 //TODO: Change this route to private

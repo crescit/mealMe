@@ -2,14 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const recipes = require('./routes/api/recipes');
-var admin = require('firebase-admin');
 
-var serviceAccount = require('./config/mealme-9fb07-firebase-adminsdk-hev5f-6726b0810b.json');
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://mealme-9fb07.firebaseio.com'
-});
 const app = express();
 
 const db = require('./config/keys').mongoURI;

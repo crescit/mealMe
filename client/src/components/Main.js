@@ -4,21 +4,25 @@ import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import {isEmpty} from "../validation/is-empty";
 
 class Main extends Component{
     constructor(props){
         super(props);
         this.state = {
-            user: JSON.parse(this.props.auth.user)
+            user: {}
         }
     }
     componentDidMount(){
-        if(this.props.auth.isAuthenticated === false){
+        if(this.props.auth.isAuthenticated === false && isEmpty(this.props.auth.user)){
             this.props.history.push('/login');
+        }
+        if(!isEmpty(this.props.auth.user)){
+            this.setState({user: this.props.auth.user});
         }
     }
     testRequest = () => {
-        axios.get('http://localhost:5000/api/recipes/test').then(res => console.log('got it')).catch(err => console.log('somethings wrong'));
+        axios.post('/api/recipes/test', {token : this.state.user.idToken}).then(res => console.log(res)).catch(err => console.log('somethings wrong'));
     };
     render(){
         const {user} = this.state;

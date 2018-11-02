@@ -15,11 +15,10 @@ import Landing from './components/Landing';
 import {logoutUser, setCurrentUser} from "./actions/authActions";
 
 if(localStorage.loginInfo){
-    const payload = localStorage.loginInfo;
-    store.dispatch(setCurrentUser(payload));
     const info = JSON.parse(localStorage.loginInfo);
     const decoded = jwt_decode(info.idToken);
     const currentTime = Date.now() / 1000;
+    store.dispatch(setCurrentUser(info));
 
     //checking constraints for identification token
     if(decoded.exp < currentTime){

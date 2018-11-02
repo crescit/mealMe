@@ -36,12 +36,18 @@ class Login extends Component{
                 if(credential === null) {
                     firebase.auth().currentUser.getIdToken(false)
                         .then(idToken => {
-                            this.props.loginUser({displayName: firebase.auth().currentUser.displayName, idToken: idToken});
+                            var token = idToken;
+                            firebase.auth().currentUser.getIdToken().then(res => token = res);
+                            this.props.loginUser({displayName: firebase.auth().currentUser.displayName, idToken: token});
                             this.props.history.push('/main');
                         })
                         .catch(console.log('failed to get current user'));
                 }
-                this.props.loginUser({displayName: firebase.auth().currentUser.displayName, idToken: credential.idToken});
+                var token;
+                firebase.auth().currentUser.getIdToken().then(res => {
+                    token = res;
+                    this.props.loginUser({displayName: firebase.auth().currentUser.displayName, idToken: token});
+                });
                 this.props.history.push('/main');
             }.bind(this)
         },
