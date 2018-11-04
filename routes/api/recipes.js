@@ -12,7 +12,7 @@ admin.initializeApp({
 });
 
 // @route   POST api/recipes/test
-// @desc    Tests recipe route
+// @desc    Tests recipe route authentication
 // @access  Public
 router.post('/test', (req, res) => {
     token = req.body.token;
@@ -24,6 +24,48 @@ router.post('/test', (req, res) => {
         return res.status(400).json({error: 'error verifying token'});
     });
 
+});
+
+// @route   GET api/recipes/:term
+// @desc    gets all recipes with a specific term in the name
+// @access  Public
+router.get('/:name' , (req, res) => {
+    const name = req.params.name.replace(/_/g, ' ');
+    Recipe.find({name: new RegExp(name, 'i')}).then(items => {
+        return res.json(items);
+    }).catch(
+        error => {
+            return res.status(404).json({error: 'recipe not found'})
+        }
+    );
+});
+// @route   GET api/recipes/ingredients/:term
+// @desc    gets all recipes with a specific term in the ingredients
+// @access  Public
+router.get('/ingredients/:term' , (req, res) => {
+    const term = req.params.term.replace(/_/g, ' ');
+
+    Recipe.find({ingredients: new RegExp(term, 'i')}).then(items => {
+        return res.json(items);
+    }).catch(
+        error => {
+            return res.status(404).json({error: 'recipe not found'})
+        }
+    );
+
+});
+
+// @route   GET api/recipes/all
+// @desc    gets all recipes
+// @access  Public
+router.get('/all' , (req, res) => {
+    Recipe.find().then(items => {
+        return res.json(items);
+    }).catch(
+        error => {
+            return res.status(404).json({error: 'recipe not found'})
+        }
+    );
 });
 
 // @route   POST api/recipes/recipe
