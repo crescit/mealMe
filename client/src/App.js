@@ -23,11 +23,11 @@ if(localStorage.loginInfo){
     //checking constraints for identification token
     if(decoded.exp < currentTime){
         store.dispatch(logoutUser());
-        window.location.href = '/login';
+        window.location.href = '/';
     }
     if(decoded.iat > currentTime){
         store.dispatch(logoutUser());
-        window.location.href = '/login';
+        window.location.href = '/';
     }
 }
 class App extends Component {

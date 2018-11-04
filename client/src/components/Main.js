@@ -14,7 +14,7 @@ class Main extends Component{
     }
     componentDidMount(){
         if(this.props.auth.isAuthenticated === false && isEmpty(this.props.auth.user)){
-            this.props.history.push('/login');
+            this.props.history.push('/');
         }
         if(!isEmpty(this.props.auth.user)){
             this.setState({user: this.props.auth.user});
@@ -26,10 +26,8 @@ class Main extends Component{
     render(){
         const {user} = this.state;
         return(<div>
-            <h1>Main</h1>
             <h2> Welcome {user.displayName} </h2>
-            <h3 > Your ID Token is: {user.idToken} </h3>
-            <button onClick={() => this.testRequest()}>TEST</button>
+            <button onClick={this.testRequest}>test</button>
         </div>);
     }
 }
