@@ -23,7 +23,6 @@ class Login extends Component{
 
         this.state = {
             googleProvider: new firebase.auth.GoogleAuthProvider(),
-            facebookProvider: new firebase.auth.FacebookAuthProvider()
         };
     }
 
@@ -54,7 +53,6 @@ class Login extends Component{
         signInSuccessUrl: 'http://localhost:3000/main',
         signInOptions: [
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
             firebase.auth.EmailAuthProvider.PROVIDER_ID,
         ]
     };
@@ -70,7 +68,6 @@ class Login extends Component{
     }
     render(){
         return(<div>
-            <h1>Login</h1>
             <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
         </div>);
     }
