@@ -1,7 +1,17 @@
 import axios from 'axios';
-import {GET_USER, GET_ERRORS} from "./types";
+import {GET_USER, GET_ERRORS, CLEAR_ERRORS} from "./types";
 
 export const getUser = (tokenStr) => dispatch => {
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    if(tokenStr === undefined){
+        dispatch({
+            type: GET_ERRORS,
+            payload: 'token is undefined'
+        });
+        return;
+    }
     const token = {token: tokenStr};
     axios.post('/api/user/getuser', token).then(res => dispatch({
         type: GET_USER,
@@ -18,6 +28,16 @@ export const getUser = (tokenStr) => dispatch => {
 };
 
 export const postRecipeToUser = (recipeId, tokenStr) => dispatch => {
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    if(recipeId === undefined || tokenStr === undefined){
+        dispatch({
+            type: GET_ERRORS,
+            payload: 'recipe ID or token is undefined'
+        });
+        return;
+    }
     const token = {token: tokenStr.toString()};
     axios.post(`/api/user/recipes/${recipeId}`, token).then(res => dispatch({
         type: GET_USER,
@@ -29,6 +49,16 @@ export const postRecipeToUser = (recipeId, tokenStr) => dispatch => {
 };
 
 export const postToUserShopList = (item, tokenStr) => dispatch => {
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    if(item === undefined || tokenStr === undefined){
+        dispatch({
+            type: GET_ERRORS,
+            payload: 'item or token is undefined'
+        });
+        return;
+    }
     const body = {
         item: item,
         token: tokenStr
@@ -43,7 +73,16 @@ export const postToUserShopList = (item, tokenStr) => dispatch => {
 };
 
 export const deleteRecipeFromUser = (recipeId, tokenStr) => dispatch => {
-    console.log(`api/user/recipes/${recipeId}/${tokenStr}`);
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    if(recipeId === undefined || tokenStr === undefined){
+        dispatch({
+            type: GET_ERRORS,
+            payload: 'recipe id or token is undefined'
+        });
+        return;
+    }
     axios.delete(`api/user/recipes/${recipeId}/${tokenStr}`).then(res => dispatch({
         type: GET_USER,
         payload: res.data
@@ -54,6 +93,16 @@ export const deleteRecipeFromUser = (recipeId, tokenStr) => dispatch => {
 
 };
 export const deleteShopItemFromUser = (itemID, tokenStr) => dispatch => {
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    if(itemId === undefined || tokenStr === undefined){
+        dispatch({
+            type: GET_ERRORS,
+            payload: 'itemID or token is undefined'
+        });
+        return;
+    }
     axios.delete(`api/user/shoplist/${itemID}/${tokenStr}`).then(res => dispatch({
         type: GET_USER,
         payload: res.data

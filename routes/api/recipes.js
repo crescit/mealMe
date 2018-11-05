@@ -55,18 +55,21 @@ router.get('/ingredients/:term' , (req, res) => {
 
 });
 
+
 // @route   GET api/recipes/all
 // @desc    gets all recipes
 // @access  Public
-router.get('/all' , (req, res) => {
-    Recipe.find().then(items => {
+router.get('/recipe/all' , (req, res) => {
+    Recipe.find({}).then(items => {
         return res.json(items);
     }).catch(
         error => {
             return res.status(404).json({error: 'recipe not found'})
         }
     );
+
 });
+
 
 // @route   POST api/recipes/recipe
 // @desc    Posts a recipe to the db

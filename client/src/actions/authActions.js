@@ -1,6 +1,13 @@
-import {SET_CURRENT_USER} from "./types";
+import {GET_ERRORS, SET_CURRENT_USER} from "./types";
 
 export const loginUser = (user) => dispatch => {
+    if(user === undefined){
+        dispatch({
+            type: GET_ERRORS,
+            payload: "user is undefined"
+        });
+        return;
+    }
     localStorage.setItem('loginInfo', JSON.stringify(user));
     dispatch(setCurrentUser(user))
 };
@@ -11,6 +18,13 @@ export const logoutUser = () => dispatch => {
 
 //set logged in user
 export const setCurrentUser = (payload) => {
+    if(payload === undefined){
+        dispatch({
+            type: GET_ERRORS,
+            payload: "user payload is undefined"
+        });
+        return;
+    }
     return {
         type: SET_CURRENT_USER,
         payload: payload

@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {isEmpty} from "../validation/is-empty";
+import {getAllRecipes, getRecipesByIngredient, getRecipesByName, createRecipe} from "../actions/recipeActions";
 
 class Main extends Component{
     constructor(props){
@@ -20,6 +21,7 @@ class Main extends Component{
         }
     }
     testRequest = () => {
+        this.props.createRecipe({name: "hi", ingredients: ["sup"], directions: ["terror", "is" , "real"]}, this.state.user.idToken);
     };
     render(){
         const {user} = this.state;
@@ -34,5 +36,6 @@ Main.propTypes = {
 };
 const mapStateToProps = (state) => ({
     auth: state.auth,
+    recipes: state.recipes
 });
-export default connect(mapStateToProps, {})(withRouter(Main));
+export default connect(mapStateToProps, {getAllRecipes,createRecipe, getRecipesByIngredient, getRecipesByName})(withRouter(Main));
