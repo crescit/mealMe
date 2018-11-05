@@ -136,7 +136,7 @@ router.post('/', (req, res) => {
                     uid: user.uid
                 });
                 newUser.save().then(
-                    res.json({success: 'success'})
+                    res.json(newUser)
                 ).catch(err => res.status(400).json({errors: err}));
 
             }
@@ -210,8 +210,8 @@ router.post('/shoplist', (req, res) => {
 // @route   DELETE api/user/recipes/:recipeid
 // @desc    deletes a recipe with a specified _id from a user
 // @access  PRIVATE
-router.delete('/recipes/:recipe_id', (req, res) => {
-    token = req.body.token;
+router.delete('/recipes/:recipe_id/:token', (req, res) => {
+    token = req.params.token;
     if (token === undefined || token === "") {
         return res.status(400).json({error: 'firebase token required'});
     }
@@ -220,7 +220,7 @@ router.delete('/recipes/:recipe_id', (req, res) => {
 
         User.findOne({uid: uid}).then(user => {
             if (user) {
-                const removeIndex = user.recipes.map(item => item._id.toString()).indexOf(req.params.recipe_id);
+                const removeIndex = user.recipes.map(item => item._id.toString()).indexOf(req.params.recipe_id.toString());
 
                 if(removeIndex === -1){
                     return res.status(404).json({error: "recipe not found"});
@@ -242,8 +242,8 @@ router.delete('/recipes/:recipe_id', (req, res) => {
 // @route   DELETE api/user/shoplist/:item_id
 // @desc    deletes a recipe with a specified _id from a user
 // @access  PRIVATE
-router.delete('/shoplist/:item_id', (req, res) => {
-    token = req.body.token;
+router.delete('/shoplist/:item_id/:token', (req, res) => {
+    token = req.params.token;
     if (token === undefined || token === "") {
         return res.status(400).json({error: 'firebase token required'});
     }

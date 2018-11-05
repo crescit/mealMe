@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import {isEmpty} from "../validation/is-empty";
 
 class Main extends Component{
@@ -21,7 +20,6 @@ class Main extends Component{
         }
     }
     testRequest = () => {
-        axios.post('/api/recipes/test', {token : this.state.user.idToken}).then(res => console.log(res)).catch(err => console.log('somethings wrong'));
     };
     render(){
         const {user} = this.state;
@@ -37,4 +35,4 @@ Main.propTypes = {
 const mapStateToProps = (state) => ({
     auth: state.auth,
 });
-export default connect(mapStateToProps)(withRouter(Main));
+export default connect(mapStateToProps, {})(withRouter(Main));

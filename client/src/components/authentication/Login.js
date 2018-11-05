@@ -46,8 +46,9 @@ class Login extends Component{
                 firebase.auth().currentUser.getIdToken().then(res => {
                     token = res;
                     this.props.loginUser({displayName: firebase.auth().currentUser.displayName, idToken: token});
+                    this.props.history.push('/main');
+
                 });
-                this.props.history.push('/main');
             }.bind(this)
         },
         signInSuccessUrl: 'http://localhost:3000/main',
