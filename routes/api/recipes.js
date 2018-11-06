@@ -26,6 +26,23 @@ router.post('/test', (req, res) => {
 
 });
 
+// @route   GET api/recipes/random
+// @desc    gets 3 random recipes
+// @access  Public
+router.get('/random', (req, res) => {
+
+    Recipe.count().exec(function (err, count) {
+
+        // Get a random entry
+        var random = Math.floor(Math.random() * count);
+
+        Recipe.findOne().skip(random).exec(
+            function (err, result) {
+                return res.json(result);
+            })
+    })
+});
+
 // @route   GET api/recipes/:term
 // @desc    gets all recipes with a specific term in the name
 // @access  Public

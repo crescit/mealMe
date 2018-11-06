@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {isEmpty} from "../validation/is-empty";
-import {getAllRecipes, getRecipesByIngredient, getRecipesByName, createRecipe} from "../actions/recipeActions";
+import {getRandomRecipe} from "../actions/recipeActions";
 
 class Main extends Component{
     constructor(props){
@@ -19,15 +19,15 @@ class Main extends Component{
         if(!isEmpty(this.props.auth.user)){
             this.setState({user: this.props.auth.user});
         }
+        for(var i = 0; i < 3; i++){
+            this.props.getRandomRecipe();
+        }
     }
-    testRequest = () => {
-        this.props.createRecipe({name: "hi", ingredients: ["sup"], directions: ["terror", "is" , "real"]}, this.state.user.idToken);
-    };
     render(){
         const {user} = this.state;
         return(<div>
             <h2> Welcome {user.displayName} </h2>
-            <button onClick={this.testRequest}>test</button>
+            <button onClick={() => this.getRandomRecipes()}>hi</button>
         </div>);
     }
 }
@@ -38,4 +38,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth,
     recipes: state.recipes
 });
-export default connect(mapStateToProps, {getAllRecipes,createRecipe, getRecipesByIngredient, getRecipesByName})(withRouter(Main));
+export default connect(mapStateToProps, {getRandomRecipe})(withRouter(Main));
