@@ -9,7 +9,9 @@ import jwt_decode from 'jwt-decode';
 //import components below
 import Main from './components/Main';
 import Login from './components/authentication/Login';
-import Landing from './components/Landing';
+import Landing from './components/navigation/Landing';
+import Recipe from './components/Recipe';
+import Navigationbar from './components/navigation/NavBar';
 
 //import actions below
 import {logoutUser, setCurrentUser} from "./actions/authActions";
@@ -37,6 +39,7 @@ class App extends Component {
           <Provider store={store}>
           <Router>
               <div>
+                  <Navigationbar/>
                   <Switch>
                       <Route exact path="/" component={Landing}/>
                   </Switch>
@@ -45,6 +48,9 @@ class App extends Component {
               </Switch>
                   <Switch>
                       <Route exact path="/main" component={Main}/>
+                  </Switch>
+                  <Switch>
+                      <Route exact path="/recipe/:id" component={Recipe}/>
                   </Switch>
               </div>
           </Router>
