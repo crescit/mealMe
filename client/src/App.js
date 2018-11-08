@@ -12,7 +12,7 @@ import Login from './components/authentication/Login';
 import Landing from './components/navigation/Landing';
 import Recipe from './components/Recipe';
 import Navigationbar from './components/navigation/NavBar';
-
+import Createrecipe from './components/Createrecipe';
 //import actions below
 import {logoutUser, setCurrentUser} from "./actions/authActions";
 
@@ -51,6 +51,9 @@ class App extends Component {
                   </Switch>
                   <Switch>
                       <Route exact path="/recipe/:id" component={Recipe}/>
+                  </Switch>
+                  <Switch>
+                      <Route exact path="/createrecipe" component={Createrecipe}/>
                   </Switch>
               </div>
           </Router>

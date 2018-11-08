@@ -5,7 +5,7 @@ import {
     GET_ALL_RECIPES,
     GET_ERRORS, GET_RANDOM_RECIPE,
     GET_RECIPE_BY_INGREDIENT,
-    GET_RECIPE_BY_NAME, SET_LOADING
+    GET_RECIPE_BY_NAME, SET_LOADING, GET_RECIPE_BY_ID
 } from "./types";
 import {isEmpty} from "../validation/is-empty";
 
@@ -61,7 +61,30 @@ export const getRecipesByIngredient = (term) => dispatch => {
     }));
 
 };
-
+export const getRecipesByID = (id) => dispatch => {
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    if(id === undefined){
+        return dispatch({
+            type: GET_ERRORS,
+            payload: "id is undefined"
+        });
+    }
+    axios.get(`/api/recipes/${id}`).then(res => {
+        dispatch({
+            type: GET_RECIPE_BY_ID,
+            payload: res.data
+        });
+        dispatch({
+            type: SET_LOADING,
+            payload: false
+        });
+    }).catch(err => dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+    }));
+};
 export const getRecipesByName = (name) => dispatch => {
     dispatch({
         type: CLEAR_ERRORS
@@ -96,6 +119,7 @@ export const createRecipe = (recipe, token) => dispatch => {
     dispatch({
         type: CLEAR_ERRORS
     });
+
     if(recipe === undefined || token === undefined){
         dispatch({
             type: GET_ERRORS,
@@ -103,6 +127,7 @@ export const createRecipe = (recipe, token) => dispatch => {
         });
         return;
     }
+
     dispatch({
         type: SET_LOADING
     });
@@ -120,7 +145,7 @@ export const createRecipe = (recipe, token) => dispatch => {
     axios.post('/api/recipes/recipe', needed).then( res => {
         dispatch({
             type: CREATE_NEW_RECIPE,
-            payload: true
+            payload: res.data.response
         });
         dispatch({
             type: SET_LOADING,

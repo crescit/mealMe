@@ -1,7 +1,8 @@
-import {GET_USER} from "../actions/types";
+import {GET_USER, SET_LOADING} from "../actions/types";
 
 const initialState = {
         user: {},
+        loading: false
 };
 
 export default function(state = initialState, action){
@@ -10,6 +11,11 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 user: action.payload,
+            };
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.payload
             };
         default:
             return state;

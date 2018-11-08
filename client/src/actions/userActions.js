@@ -1,9 +1,13 @@
 import axios from 'axios';
-import {GET_USER, GET_ERRORS, CLEAR_ERRORS} from "./types";
+import {GET_USER, GET_ERRORS, CLEAR_ERRORS, SET_LOADING} from "./types";
 
 export const getUser = (tokenStr) => dispatch => {
     dispatch({
         type: CLEAR_ERRORS
+    });
+    dispatch({
+        type: SET_LOADING,
+        payload: true
     });
     if(tokenStr === undefined){
         dispatch({
@@ -13,10 +17,17 @@ export const getUser = (tokenStr) => dispatch => {
         return;
     }
     const token = {token: tokenStr};
-    axios.post('/api/user/getuser', token).then(res => dispatch({
-        type: GET_USER,
-        payload: res.data
-    })).catch(notfound => {
+    axios.post('/api/user/getuser', token).then(res => {
+        dispatch({
+            type: GET_USER,
+            payload: res.data
+        });
+        dispatch({
+            type: SET_LOADING,
+            payload: false
+        });
+        return res.data;
+    }).catch(notfound => {
         axios.post('/api/user/', token).then(res => dispatch({
             type: GET_USER,
             payload: res.data
@@ -96,7 +107,7 @@ export const deleteShopItemFromUser = (itemID, tokenStr) => dispatch => {
     dispatch({
         type: CLEAR_ERRORS
     });
-    if(itemId === undefined || tokenStr === undefined){
+    if(itemID === undefined || tokenStr === undefined){
         dispatch({
             type: GET_ERRORS,
             payload: 'itemID or token is undefined'

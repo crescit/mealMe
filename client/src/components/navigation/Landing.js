@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Login from "../authentication/Login";
 import jwt_decode from "jwt-decode";
 import store from "../../store";
-import {logoutUser, setCurrentUser} from "../../actions/authActions";
+import {setCurrentUser} from "../../actions/authActions";
 
 if(localStorage.loginInfo){
     const info = JSON.parse(localStorage.loginInfo);

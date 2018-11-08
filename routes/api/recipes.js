@@ -86,6 +86,34 @@ router.get('/recipe/all' , (req, res) => {
     );
 
 });
+// @route   GET api/recipes/find/:id
+// @desc    gets recipe by a specific id
+// @access  Public
+router.get('/findbyid/:id' , (req, res) => {
+    const id = req.params.id;
+    Recipe.find({_id: id}).then(items => {
+        return res.json(items);
+    }).catch(
+        error => {
+            return res.status(404).json({error: 'recipe not found'})
+        }
+    );
+
+});
+// @route   DELETE api/recipes/:id
+// @desc    deletes recipe by a specific id
+// @access  Public
+router.delete('/:id' , (req, res) => {
+    const id = req.params.id;
+    Recipe.findOneAndDelete({_id: id}).then(() => {
+        Recipe.findOneAndDelete({_id: id}).then(() => res.json({success: true}));
+    }).catch(
+        error => {
+            return res.status(404).json({error: 'recipe not found'})
+        }
+    );
+
+});
 
 
 // @route   POST api/recipes/recipe
@@ -111,7 +139,7 @@ router.post('/recipe', (req, res) => {
             ingredients: req.body.ingredients,
             directions: req.body.directions
         });
-        newRecipe.save().then(response => res.json({success: "success"})).catch(err => res.status(400).json({errors: err}))
+        newRecipe.save().then(response => res.json({response})).catch(err => res.status(400).json({errors: err}))
     }).catch(err => {
         return res.status(400).json({error: 'error verifying token'});
     });
