@@ -28,9 +28,10 @@ class BrowseRecipes extends Component{
     render(){
         let content;
         if(this.props.recipes.loading === true || isEmpty(this.props.recipes.recipesByName)){
-            content = <h5>Loading</h5>;
-        }else{
-            content = this.props.recipes.recipesByName.map(item => <a href={"recipe/" + item._id} key={item._id}>{item.name}</a>)
+            content = <h5>No Recipes Found</h5>;
+        }
+        else{
+            content = this.props.recipes.recipesByName.map(item => <Col style={{"text-align": 'left'}}><a href={"recipe/" + item._id} key={item._id}>{item.name}</a></Col>)
         }
         return(<div>
             <NavigationBar/>
