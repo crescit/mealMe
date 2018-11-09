@@ -71,7 +71,7 @@ export const getRecipesByID = (id) => dispatch => {
             payload: "id is undefined"
         });
     }
-    axios.get(`/api/recipes/${id}`).then(res => {
+    axios.get(`/api/recipes/findbyid/${id}`).then(res => {
         dispatch({
             type: GET_RECIPE_BY_ID,
             payload: res.data
@@ -82,7 +82,7 @@ export const getRecipesByID = (id) => dispatch => {
         });
     }).catch(err => dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
     }));
 };
 export const getRecipesByName = (name) => dispatch => {
@@ -110,9 +110,60 @@ export const getRecipesByName = (name) => dispatch => {
         });
     }).catch(err => dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
     }));
 
+};
+export const getRecipesByNum = () => dispatch => {
+    //GET api/recipes/recipe/find/getbynumbers
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    dispatch({
+        type: SET_LOADING
+    });
+    axios.get(`/api/recipes/recipe/find/getbynumbers`).then(res => {
+        dispatch({
+            type: GET_RECIPE_BY_NAME,
+            payload: res.data
+        });
+        dispatch({
+            type: SET_LOADING,
+            payload: false
+        });
+    }).catch(err => dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+    }));
+};
+
+///recipe/find/getbyalph/:name
+export const getRecipesByAlph = (term) => dispatch => {
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    if(term === undefined){
+        return dispatch({
+            type: GET_ERRORS,
+            payload: "Term is undefined"
+        })
+    }
+    dispatch({
+        type: SET_LOADING
+    });
+    axios.get(`/api/recipes/recipe/find/getbyalph/${term}`).then(res => {
+        dispatch({
+            type: GET_RECIPE_BY_NAME,
+            payload: res.data
+        });
+        dispatch({
+            type: SET_LOADING,
+            payload: false
+        });
+    }).catch(err => dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+    }));
 };
 
 export const createRecipe = (recipe, token) => dispatch => {

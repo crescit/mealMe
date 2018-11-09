@@ -28,9 +28,15 @@ class NavigationBar extends React.Component {
 
     render() {
         let val = 'true';
-        if(!this.props.auth.isAuthenticated){
+
+        if(window.location.href === 'http://localhost:3000/'){
             val = 'none'
         }
+        window.setInterval(function(){
+            if(window.location.href !== 'http://localhost:3000/'){
+                val = 'true'
+            }
+        }, 1000);
         let content = (<Nav style={{display: val}} className="ml-auto" navbar>
             <NavItem>
                 <NavLink href="/shoppinglist">My Shopping List</NavLink>

@@ -4,6 +4,8 @@ import {postRecipeToUser} from "../actions/userActions";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import {isEmpty} from "../validation/is-empty";
+import NavigationBar from "./navigation/Navigationbar";
 
 class Createrecipe extends Component{
     constructor(){
@@ -22,7 +24,11 @@ class Createrecipe extends Component{
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     };
-
+    componentDidMount(){
+        if(this.props.auth.isAuthenticated === false && isEmpty(this.props.auth.user)){
+            this.props.history.push('/');
+        }
+    }
     componentWillReceiveProps(nextProps){
         if(nextProps.errors){
             this.setState({errors: nextProps.errors})
@@ -50,7 +56,7 @@ class Createrecipe extends Component{
         };
         this.props.createRecipe(newRecipe, this.props.auth.user.idToken);
         setTimeout(() => {
-            if(this.props.errors === undefined){
+            if(isEmpty(this.props.errors)){
                 this.props.postRecipeToUser(this.props.recipes.recipe._id, this.props.auth.user.idToken);
                 alert('Recipe Added To User');
                 this.props.history.push('/main');
@@ -62,6 +68,7 @@ class Createrecipe extends Component{
         const {errors} = this.state;
 
         return (<div >
+            <NavigationBar/>
             <div className="register">
                 <div className="container">
                     <div className="row">

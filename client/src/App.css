@@ -42,3 +42,12 @@
     transform: rotate(360deg);
   }
 }
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  height: 35px;
+  width: 35px;
+  outline: black;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  border: 1px solid black;
+}

@@ -56,6 +56,32 @@ router.get('/:name' , (req, res) => {
         }
     );
 });
+// @route   GET api/recipes/recipe/find/getbynumbers
+// @desc    gets all recipes with a specific term in the name
+// @access  Public
+router.get('/recipe/find/getbynumbers' , (req, res) => {
+
+    Recipe.find({name: new RegExp('[0-9]', "i")}).then(items => {
+        return res.json(items);
+    }).catch(
+        error => {
+            return res.status(404).json({error: 'recipe not found'})
+        }
+    );
+});
+// @route   GET api/recipes/recipe/find/getbynumbers
+// @desc    gets all recipes with a specific term in the name
+// @access  Public
+router.get('/recipe/find/getbyalph/:name' , (req, res) => {
+    const name = req.params.name;
+    Recipe.find({name: new RegExp('^' + name, "i")}).then(items => {
+        return res.json(items);
+    }).catch(
+        error => {
+            return res.status(404).json({error: 'recipe not found'})
+        }
+    );
+});
 // @route   GET api/recipes/ingredients/:term
 // @desc    gets all recipes with a specific term in the ingredients
 // @access  Public
@@ -86,7 +112,7 @@ router.get('/recipe/all' , (req, res) => {
     );
 
 });
-// @route   GET api/recipes/find/:id
+// @route   GET api/recipes/findbyid/:id
 // @desc    gets recipe by a specific id
 // @access  Public
 router.get('/findbyid/:id' , (req, res) => {

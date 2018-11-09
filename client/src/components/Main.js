@@ -11,6 +11,7 @@ import {
     CarouselIndicators,
     CarouselCaption
 } from 'reactstrap';
+import NavigationBar from "./navigation/Navigationbar";
 
 var items = [
     {
@@ -39,7 +40,6 @@ class Main extends Component{
             this.onExiting = this.onExiting.bind(this);
             this.onExited = this.onExited.bind(this);
     }
-
     onExiting() {
         this.animating = true;
     }
@@ -64,6 +64,7 @@ class Main extends Component{
         if (this.animating) return;
         this.setState({ activeIndex: newIndex });
     }
+
     componentDidMount(){
         if(this.props.auth.isAuthenticated === false && isEmpty(this.props.auth.user)){
             this.props.history.push('/');
@@ -75,6 +76,7 @@ class Main extends Component{
             this.props.getRandomRecipe();
         }
     }
+
     goToRecipe(item){
         const name = item.caption;
         let recipeIndex = 0;
@@ -111,6 +113,7 @@ class Main extends Component{
         }
         const slides = items.map((item) => {
             return (
+
                 <CarouselItem
                     onExiting={this.onExiting}
                     onExited={this.onExited}
@@ -118,10 +121,16 @@ class Main extends Component{
                 >
                     <img onClick={() => this.goToRecipe(item)} style={{height: '312px', width: '512px'}}src={item.src} alt={item.altText} />
                     <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+                    <div className="mt-3">
+                        <h6>{item.caption}</h6>
+                    </div>
                 </CarouselItem>
+
+
             );
         });
         return(<div>
+            <NavigationBar/>
             <h2> Welcome {this.props.auth.user.displayName} </h2>
             <Carousel
                 activeIndex={activeIndex}

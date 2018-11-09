@@ -11,8 +11,8 @@ import Main from './components/Main';
 import Login from './components/authentication/Login';
 import Landing from './components/navigation/Landing';
 import Recipe from './components/Recipe';
-import Navigationbar from './components/navigation/NavBar';
 import Createrecipe from './components/Createrecipe';
+import BrowseRecipes from './components/browserecipes/BrowseRecipes';
 //import actions below
 import {logoutUser, setCurrentUser} from "./actions/authActions";
 
@@ -32,6 +32,7 @@ if(localStorage.loginInfo){
         window.location.href = '/';
     }
 }
+
 class App extends Component {
   render() {
     return (
@@ -39,7 +40,6 @@ class App extends Component {
           <Provider store={store}>
           <Router>
               <div>
-                  <Navigationbar/>
                   <Switch>
                       <Route exact path="/" component={Landing}/>
                   </Switch>
@@ -54,6 +54,9 @@ class App extends Component {
                   </Switch>
                   <Switch>
                       <Route exact path="/createrecipe" component={Createrecipe}/>
+                  </Switch>
+                  <Switch>
+                      <Route exact path="/browserecipes" component={BrowseRecipes}/>
                   </Switch>
               </div>
           </Router>

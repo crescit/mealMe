@@ -3,6 +3,8 @@ import Login from "../authentication/Login";
 import jwt_decode from "jwt-decode";
 import store from "../../store";
 import {setCurrentUser} from "../../actions/authActions";
+import NavigationBar from "./Navigationbar";
+
 
 if(localStorage.loginInfo){
     const info = JSON.parse(localStorage.loginInfo);
@@ -20,7 +22,8 @@ class Landing extends Component {
     render(){
         return(
             <div className="text-white landing">
-            <h1 className="p-5">MealMe</h1>
+                <NavigationBar/>
+                <h1 className="p-5">MealMe</h1>
                 <h3 className="p-2 lead text-muted">Search and Create Recipes, Add Recipe Ingredients to Your Groceries List, and Change The Way You Do Meals</h3>
                 <Login/>
 

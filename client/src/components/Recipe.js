@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-
+import NavigationBar from "./navigation/Navigationbar";
+import {getRecipesByID} from "../actions/recipeActions";
+import {connect} from 'react-redux';
+import {isEmpty} from "../validation/is-empty";
 
 const RecipeContent = (props) => {
     const ingredients = props.props.ingredients.map((item) =>
-        <li>{item}</li>
+        <li key={item}>{item}</li>
     );
     const directions = props.props.directions.map((item) =>
-        <li>{item}</li>
+        <li key={item}>{item}</li>
     );
     return(
         <div>
@@ -30,22 +33,32 @@ const RecipeContent = (props) => {
 class Recipe extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            recipe: undefined || this.props.history.location.state
-        }
+    }
+    componentDidMount(){
+        var index = window.location.href.indexOf("/recipe/");
+        var id = window.location.href.slice(index + 8, ).trim();
+
+        this.props.getRecipesByID(id);
+
     }
     render(){
         let recipeContent;
-        const {recipe} = this.state;
-        if(recipe === undefined){
+        if(this.props.recipes.loading === true || isEmpty(this.props.recipes.recipe)){
+            recipeContent = <h5>Loading</h5>;
+        }else if(this.props.recipes.loading === false && !isEmpty(this.props.recipes.recipe)){
+            recipeContent = <RecipeContent props={this.props.recipes.recipe[0]}/>
+        }
+        if(this.props.recipes.loading === false && isEmpty(this.props.recipes.recipe)){
             recipeContent = (<h1>Recipe Not Found</h1>)
-        }else{
-            recipeContent = <RecipeContent props={recipe}/>
         }
         return(<div>
+            <NavigationBar/>
             {recipeContent}
         </div>)
     }
 }
-
-export default Recipe;
+const mapStateToProps = (state) => ({
+    recipes: state.recipes,
+    error: state.errors
+});
+export default connect(mapStateToProps, {getRecipesByID})(Recipe);
