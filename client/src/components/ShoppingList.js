@@ -14,7 +14,7 @@ const ShoplistItem = (props) => {
     return(<ListGroupItem>{item.item}<Button onClick={() => {
         props.props.remove(item._id, idToken);
         window.location.reload(true);
-    }}color="danger">-</Button></ListGroupItem>)
+    }} size="sm" color="danger">-</Button></ListGroupItem>)
 };
 class ShoppingList extends Component{
     componentDidMount(){

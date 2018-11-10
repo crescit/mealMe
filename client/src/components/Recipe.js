@@ -66,6 +66,9 @@ class Recipe extends Component{
         super(props);
     }
     componentDidMount(){
+        if(this.props.auth.isAuthenticated === false && isEmpty(this.props.auth.user)){
+            this.props.history.push('/');
+        }
         var index = window.location.href.indexOf("/recipe/");
         var id = window.location.href.slice(index + 8, ).trim();
 

@@ -15,6 +15,7 @@ import Createrecipe from './components/Createrecipe';
 import BrowseRecipes from './components/browserecipes/BrowseRecipes';
 import MyRecipes from './components/MyRecipes';
 import ShoppingList from './components/ShoppingList';
+import SearchResults from './components/SearchResults';
 //import actions below
 import {logoutUser, setCurrentUser} from "./actions/authActions";
 
@@ -65,6 +66,9 @@ class App extends Component {
                   </Switch>
                   <Switch>
                       <Route exact path="/shoppinglist" component={ShoppingList}/>
+                  </Switch>
+                  <Switch>
+                      <Route exact path="/searchresults/:term" component={SearchResults}/>
                   </Switch>
               </div>
           </Router>
