@@ -13,6 +13,8 @@ import Landing from './components/navigation/Landing';
 import Recipe from './components/Recipe';
 import Createrecipe from './components/Createrecipe';
 import BrowseRecipes from './components/browserecipes/BrowseRecipes';
+import MyRecipes from './components/MyRecipes';
+import ShoppingList from './components/ShoppingList';
 //import actions below
 import {logoutUser, setCurrentUser} from "./actions/authActions";
 
@@ -57,6 +59,12 @@ class App extends Component {
                   </Switch>
                   <Switch>
                       <Route exact path="/browserecipes" component={BrowseRecipes}/>
+                  </Switch>
+                  <Switch>
+                      <Route exact path="/myrecipes" component={MyRecipes}/>
+                  </Switch>
+                  <Switch>
+                      <Route exact path="/shoppinglist" component={ShoppingList}/>
                   </Switch>
               </div>
           </Router>

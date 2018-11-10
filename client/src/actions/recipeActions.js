@@ -85,6 +85,30 @@ export const getRecipesByID = (id) => dispatch => {
         payload: err.response
     }));
 };
+export const getRecipeByID = (id) => dispatch => {
+    dispatch({
+        type: CLEAR_ERRORS
+    });
+    if(id === undefined){
+        return dispatch({
+            type: GET_ERRORS,
+            payload: "id is undefined"
+        });
+    }
+    axios.get(`/api/recipes/findbyid/${id}`).then(res => {
+        dispatch({
+            type: GET_RANDOM_RECIPE,
+            payload: res.data
+        });
+        dispatch({
+            type: SET_LOADING,
+            payload: false
+        });
+    }).catch(err => dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+    }));
+};
 export const getRecipesByName = (name) => dispatch => {
     dispatch({
         type: CLEAR_ERRORS

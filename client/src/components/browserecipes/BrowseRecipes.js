@@ -14,7 +14,11 @@ class BrowseRecipes extends Component{
         }
     }
     componentDidMount(){
+        if(this.props.auth.isAuthenticated === false && isEmpty(this.props.auth.user)){
+            this.props.history.push('/');
+        }
         this.props.getRecipesByNum();
+
     }
     handleClick = (event) => {
         //if the number was selected search for a regular expression for all numbers
