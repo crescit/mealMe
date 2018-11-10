@@ -6,17 +6,18 @@ import {isEmpty} from "../validation/is-empty";
 import { Container, Row, Col, Button } from 'reactstrap';
 import {postRecipeToUser, postToUserShopList} from "../actions/userActions";
 import PropTypes from 'prop-types';
+import { ListGroup, ListGroupItem} from 'reactstrap';
 
 
 const IngredientItem = (...props) => {
     return(
         <div>
             <Row>
-                <li key={props[0].props}>{props[0].props}</li>
-                <Button onClick={() => {
+                <ListGroupItem style={{display: "list-item"}} key={props[0].props}>{props[0].props}<Button onClick={() => {
                     props[0].save(props[0].props, props[0].token);
                     alert("Item saved to shopping list");
-                }} size="sm" color="primary">+</Button>
+                }} size="sm" color="primary">+</Button></ListGroupItem>
+
             </Row>
         </div>
     )
@@ -26,7 +27,7 @@ const RecipeContent = (props) => {
         <IngredientItem key={item} save={props.props.saveToUser} token={props.props.token} props={item}/>
     );
     const directions = props.props.directions.map((item) =>
-        <li key={item}>{item}</li>
+        <ListGroupItem style={{display: "list-item"}} key={item}>{item}</ListGroupItem>
     );
     return(
         <div>
@@ -50,15 +51,24 @@ const RecipeContent = (props) => {
                     </Col>
                 </Row>
             </Container>
-            <h6>Ingredients</h6>
-            <ol>
-                {ingredients}
-            </ol>
-            <h6>Directions</h6>
 
-            <ol>
+            <Container>
+                <Row>
+                    <Col>
+                        <h6>Ingredients</h6>
+            <ListGroup style={{"list-style": "decimal inside"}}>
+                {ingredients}
+            </ListGroup>
+                    </Col>
+
+                <Col>
+                    <h6>Directions</h6>
+            <ListGroup style={{"list-style": "decimal inside"}}>
                 {directions}
-            </ol>
+            </ListGroup>
+                </Col>
+                </Row>
+            </Container>
         </div>)
 };
 class Recipe extends Component{
