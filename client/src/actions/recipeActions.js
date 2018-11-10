@@ -5,7 +5,7 @@ import {
     GET_ALL_RECIPES,
     GET_ERRORS, GET_RANDOM_RECIPE,
     GET_RECIPE_BY_INGREDIENT,
-    GET_RECIPE_BY_NAME, SET_LOADING, GET_RECIPE_BY_ID
+    GET_RECIPE_BY_NAME, SET_LOADING, GET_RECIPE_BY_ID, GET_RECIPES
 } from "./types";
 import {isEmpty} from "../validation/is-empty";
 
@@ -97,7 +97,7 @@ export const getRecipeByID = (id) => dispatch => {
     }
     axios.get(`/api/recipes/findbyid/${id}`).then(res => {
         dispatch({
-            type: GET_RANDOM_RECIPE,
+            type: GET_RECIPES,
             payload: res.data
         });
         dispatch({
@@ -110,6 +110,7 @@ export const getRecipeByID = (id) => dispatch => {
     }));
 };
 export const getRecipesByName = (name) => dispatch => {
+
     dispatch({
         type: CLEAR_ERRORS
     });

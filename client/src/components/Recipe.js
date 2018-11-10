@@ -31,7 +31,7 @@ const RecipeContent = (props) => {
     return(
         <div>
             <h1>{props.props.name}</h1>
-            <img alt={props.props.name} src={props.props.img}/>
+            <img style={{height: '312px', width: '312px'}}alt={props.props.name} src={props.props.img}/>
             <Container>
                 <Row>
                     <Col>

@@ -31,13 +31,13 @@ class RecipeItem extends Component{
     }
     render(){
         let content;
-        if(isEmpty(this.props.recipes.randomRecipes)){
+        if(isEmpty(this.props.recipes.myrecipes)){
             content = <h1>Loading</h1>
         }else{
-            for(var i = 0; i < this.props.recipes.randomRecipes.length; i++){
-                if(this.props.recipes.randomRecipes[i][0] !== undefined && this.props.recipes.randomRecipes[i][0]._id === this.props.props.id){
+            for(var i = 0; i < this.props.recipes.myrecipes.length; i++){
+                if(this.props.recipes.myrecipes[i][0] !== undefined && this.props.recipes.myrecipes[i][0]._id === this.props.props.id){
                     //content = <h1>{this.props.recipes.randomRecipes[i][0].name}</h1>
-                    content = <RecipeContent  props={{recipe:this.props.recipes.randomRecipes[i][0],
+                    content = <RecipeContent  props={{recipe:this.props.recipes.myrecipes[i][0],
                     user: this.props.auth, delete: this.props.deleteRecipeFromUser, userRecipe: this.state.recipeID}}/>
                 }
             };

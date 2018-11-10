@@ -9,3 +9,4 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const GET_RANDOM_RECIPE = 'GET_RANDOM_RECIPE';
 export const SET_LOADING = 'SET_LOADING';
 export const GET_RECIPE_BY_ID = "GET_RECIPE_BY_ID";
+export const GET_RECIPES = "GET_RECIPES";

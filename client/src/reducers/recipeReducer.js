@@ -3,7 +3,7 @@ import {
     GET_ALL_RECIPES, GET_RANDOM_RECIPE,
     GET_RECIPE_BY_INGREDIENT,
     GET_RECIPE_BY_NAME,
-    SET_LOADING, GET_RECIPE_BY_ID
+    SET_LOADING, GET_RECIPE_BY_ID, GET_RECIPES
 } from "../actions/types";
 
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
     recipes: {},
     recipe: {},
     randomRecipes: [],
+    myrecipes: [],
     loading: false
 };
 
@@ -21,6 +22,11 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 recipes: action.payload,
+            };
+        case GET_RECIPES:
+            return {
+                ...state,
+                myrecipes: [action.payload, ...state.myrecipes]
             };
         case SET_LOADING:
             return {
