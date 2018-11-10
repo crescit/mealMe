@@ -6,15 +6,36 @@ import {getUser} from "../actions/userActions";
 import { ListGroup, ListGroupItem, Button } from 'reactstrap';
 import {deleteShopItemFromUser} from "../actions/userActions";
 
-const ShoplistItem = (props) => {
+class ShoplistItem extends Component {
+    constructor(props){
+        super(props);
+        const item = props.props.item;
+        const idToken = props.props.idToken;
+        const remove = props.props.remove;
+        this.state = {
+            item: item,
+            idToken: idToken,
+            remove: remove,
+            color: ""
+        }
+    }
 
-    const item = props.props.item;
-    const idToken = props.props.idToken;
+    render() {
+        const {item, idToken, remove, color} = this.state;
+        /*
+           <ListGroupItem>{item.item}<Button onClick={() => {
+           remove(item._id, idToken);
+           window.location.reload(true);
+       }} size="sm" color="danger">-</Button></ListGroupItem>
+               */
+        return (
 
-    return(<ListGroupItem>{item.item}<Button onClick={() => {
-        props.props.remove(item._id, idToken);
-        window.location.reload(true);
-    }} size="sm" color="danger">-</Button></ListGroupItem>)
+            <ListGroupItem color={color} onMouseEnter={() => this.setState({color: 'danger'})} onMouseLeave={() => this.setState({color: ''})} tag="button" onClick={() => {
+                remove(item._id, idToken);
+                window.location.reload(true);
+            }}>{item.item} </ListGroupItem>
+       )
+    }
 };
 class ShoppingList extends Component{
     componentDidMount(){

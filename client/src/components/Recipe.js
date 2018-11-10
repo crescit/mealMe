@@ -9,18 +9,33 @@ import PropTypes from 'prop-types';
 import { ListGroup, ListGroupItem} from 'reactstrap';
 
 
-const IngredientItem = (...props) => {
-    return(
-        <div>
-            <Row>
-                <ListGroupItem style={{display: "list-item"}} key={props[0].props}>{props[0].props}<Button onClick={() => {
-                    props[0].save(props[0].props, props[0].token);
-                    alert("Item saved to shopping list");
-                }} size="sm" color="primary">+</Button></ListGroupItem>
+class IngredientItem extends Component{
 
-            </Row>
-        </div>
-    )
+    constructor(props){
+        super(props);
+        this.state = {
+            item: props.props,
+            token: props.token,
+            save: props.save,
+            color: ""
+        }
+    }
+
+    render() {
+        const {item, token, save, color} = this.state;
+        return (
+            <div>
+                <Row>
+
+                    <ListGroupItem color={color} onMouseEnter={() => this.setState({color: 'success'})} onMouseLeave={() => this.setState({color: ''})} tag="button" onClick={() => {
+                        save(item, token);
+                        alert("Item saved to shopping list");
+                    }}>{item} </ListGroupItem>
+                </Row>
+            </div>
+        )
+
+    }
 };
 const RecipeContent = (props) => {
     const ingredients = props.props.ingredients.map((item) =>
@@ -56,14 +71,14 @@ const RecipeContent = (props) => {
                 <Row>
                     <Col>
                         <h6>Ingredients</h6>
-            <ListGroup style={{"list-style": "decimal inside"}}>
+            <ListGroup style={{listStyle: "decimal inside"}}>
                 {ingredients}
             </ListGroup>
                     </Col>
 
                 <Col>
                     <h6>Directions</h6>
-            <ListGroup style={{"list-style": "decimal inside"}}>
+            <ListGroup style={{listStyle: "decimal inside"}}>
                 {directions}
             </ListGroup>
                 </Col>

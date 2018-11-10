@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4e13206-0f2d-448a-8cfb-bc4898ec729b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Recipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Recipe.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ShoppingList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ShoppingList.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +34,7 @@
           <entry key="css" value="7" />
           <entry key="gitignore" value="2" />
           <entry key="html" value="6" />
-          <entry key="js" value="357" />
+          <entry key="js" value="362" />
           <entry key="json" value="11" />
           <entry key="py" value="5" />
         </counts>
@@ -42,7 +44,7 @@
           <entry key="CSS" value="7" />
           <entry key="HTML" value="6" />
           <entry key="JSON" value="11" />
-          <entry key="JavaScript" value="357" />
+          <entry key="JavaScript" value="362" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="Python" value="1" />
         </counts>
@@ -51,7 +53,7 @@
         <counts>
           <entry key="css" value="34" />
           <entry key="html" value="15" />
-          <entry key="js" value="42794" />
+          <entry key="js" value="44288" />
           <entry key="json" value="3" />
           <entry key="py" value="4187" />
         </counts>
@@ -61,7 +63,7 @@
           <entry key="CSS" value="34" />
           <entry key="HTML" value="15" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="42794" />
+          <entry key="JavaScript" value="44288" />
           <entry key="Python" value="4187" />
         </counts>
       </usages-collector>
@@ -73,11 +75,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/Recipe.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+            <state relative-caret-position="268">
+              <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="32" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/components/ShoppingList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="386">
+              <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -153,7 +167,6 @@
         <option value="$PROJECT_DIR$/client/src/actions/userActions.js" />
         <option value="$PROJECT_DIR$/routes/api/user.js" />
         <option value="$PROJECT_DIR$/client/src/components/browserecipes/BrowseRecipes.js" />
-        <option value="$PROJECT_DIR$/client/src/components/ShoppingList.js" />
         <option value="$PROJECT_DIR$/client/src/App.js" />
         <option value="$PROJECT_DIR$/client/src/components/SearchResults.js" />
         <option value="$PROJECT_DIR$/client/src/components/SearchBar.js" />
@@ -162,9 +175,10 @@
         <option value="$PROJECT_DIR$/client/src/actions/types.js" />
         <option value="$PROJECT_DIR$/client/src/actions/recipeActions.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/recipeReducer.js" />
-        <option value="$PROJECT_DIR$/client/src/components/RecipeItem.js" />
         <option value="$PROJECT_DIR$/client/src/components/RecipeItemForMain.js" />
         <option value="$PROJECT_DIR$/client/src/components/Recipe.js" />
+        <option value="$PROJECT_DIR$/client/src/components/RecipeItem.js" />
+        <option value="$PROJECT_DIR$/client/src/components/ShoppingList.js" />
       </list>
     </option>
   </component>
@@ -184,10 +198,10 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="741" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="74" />
     <option name="y" value="23" />
-    <option name="width" value="699" />
+    <option name="width" value="1366" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -328,18 +342,18 @@
       <workItem from="1541721822924" duration="7150000" />
       <workItem from="1541825648212" duration="7578000" />
       <workItem from="1541836465213" duration="2574000" />
-      <workItem from="1541882454919" duration="9059000" />
+      <workItem from="1541882454919" duration="11335000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112525000" />
+    <option name="totallyTimeSpent" value="114801000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="741" y="23" width="699" height="877" extended-state="0" />
+    <frame x="44" y="23" width="1396" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24657534" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24593796" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -371,6 +385,17 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/client/src/components/ShoppingList.js</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -596,16 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/ShoppingList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="22" column="9" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="22" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -713,15 +728,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/RecipeItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-end-line="5" />
+        <state relative-caret-position="375">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/Recipe.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+        <state relative-caret-position="268">
+          <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="32" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/ShoppingList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
