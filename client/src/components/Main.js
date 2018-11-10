@@ -3,16 +3,19 @@ import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {isEmpty} from "../validation/is-empty";
-import {getRandomRecipe} from "../actions/recipeActions";
+import {getRandomRecipe, getRecipesByID} from "../actions/recipeActions";
+import {getUser} from "../actions/userActions";
 import {
     Carousel,
     CarouselItem,
     CarouselControl,
     CarouselIndicators,
-    CarouselCaption
+    CarouselCaption,
+    Container, Row, Col, Jumbotron, Button, ListGroupItem
 } from 'reactstrap';
 import NavigationBar from "./navigation/Navigationbar";
 import SearchBar from './SearchBar';
+import RecipeItemForMain from "./RecipeItemForMain";
 var items = [
     {
         src: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15ba800aa1d%20text%20%7B%20fill%3A%23555%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15ba800aa1d%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22285.921875%22%20y%3D%22218.3%22%3EFirst%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E',
@@ -75,6 +78,7 @@ class Main extends Component{
         for(var i = 0; i < 3; i++){
             this.props.getRandomRecipe();
         }
+        this.props.getUser(this.props.auth.user.idToken);
     }
 
     goToRecipe(item){
@@ -87,6 +91,7 @@ class Main extends Component{
         }
         this.props.history.push(`/recipe/${this.props.recipes.randomRecipes[recipeIndex]._id}`, this.props.recipes.randomRecipes[recipeIndex]);
     }
+
     render(){
         const { activeIndex } = this.state;
         const { loading, randomRecipes} = this.props.recipes;
@@ -129,10 +134,45 @@ class Main extends Component{
 
             );
         });
+        let recipeContent;
+        if(isEmpty(this.props.user.user.recipes) || this.props.user.user.loading === true){
+            recipeContent = <h6>No Recipes Found</h6>;
+        }
+        else{
+            recipeContent = this.props.user.user.recipes.slice(0,3).map(item => <RecipeItemForMain key={item.recipeid} props={{
+                id: item.recipeid,
+                userRecipeID: item._id,
+                get: this.props.getRecipesByID
+            }}/>)
+        }
+        let shoppingContent;
+        if(isEmpty(this.props.user.user.shopList) || this.props.user.user.loading === true){
+            shoppingContent = <h6>No Shopping List Items Found</h6>;
+        }else{
+            shoppingContent = this.props.user.user.shopList.slice(0,3).map(item => <ListGroupItem  className="col-sm text-truncate">{item.item}</ListGroupItem>)
+        }
         return(<div>
             <NavigationBar/>
-            <h2> Welcome {this.props.auth.user.displayName} </h2>
             <SearchBar/>
+            <h2> Welcome {this.props.auth.user.displayName} </h2>
+            <Container>
+                <Row>
+                    <Col className="col-sm text-truncate">
+                        <Jumbotron className="col-sm text-truncate">
+                            <h6>My Recipes</h6>
+                            {recipeContent}
+                            <Button onClick={() => this.props.history.push('/myrecipes')}color="info" size="sm">View More</Button>
+                        </Jumbotron>
+                    </Col>
+                    <Col className="col-sm text-truncate">
+                        <Jumbotron className="col-sm text-truncate">
+                            <h6>My Shopping List</h6>
+                            {shoppingContent}
+                            <Button onClick={() => this.props.history.push('/shoppinglist')} color="info" size="sm">View More</Button>
+                        </Jumbotron>
+                    </Col>
+                </Row>
+            </Container>
             <Carousel
                 activeIndex={activeIndex}
                 next={this.next}
@@ -153,6 +193,7 @@ Main.propTypes = {
 };
 const mapStateToProps = (state) => ({
     auth: state.auth,
-    recipes: state.recipes
+    recipes: state.recipes,
+    user: state.user
 });
-export default connect(mapStateToProps, {getRandomRecipe})(withRouter(Main));
+export default connect(mapStateToProps, {getRandomRecipe, getUser, getRecipesByID})(withRouter(Main));

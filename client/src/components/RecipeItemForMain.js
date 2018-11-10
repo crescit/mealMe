@@ -10,11 +10,7 @@ const RecipeContent = (props) => {
     const recipe = props.props.recipe;
     const userRecipe = props.props.userRecipe;
     let visible = "";
-    return(<div><ListGroupItem style={{display: visible, textAlign: "left"}}tag="a" href={"/recipe/" + recipe._id}><img className="rounded" alt="recipe " style={{height: '36px', width: '36px'}} src={recipe.img}/>{recipe.name}<Button onClick={(e) => {
-        e.preventDefault();
-        props.props.delete(userRecipe, id);
-        window.location.reload(true);
-    }} className="rounded" color="danger"> - </Button></ListGroupItem></div>)
+    return(<div><ListGroupItem className="col-sm text-truncate" style={{display: visible, textAlign: "left"}}tag="a" href={"/recipe/" + recipe._id}>{recipe.name}</ListGroupItem></div>)
 };
 class RecipeItem extends Component{
     constructor(props){
@@ -35,9 +31,9 @@ class RecipeItem extends Component{
             content = <h1>Loading</h1>
         }else{
             for(var i = 0; i < this.props.recipes.randomRecipes.length; i++){
-                if(this.props.recipes.randomRecipes[i][0] !== undefined && this.props.recipes.randomRecipes[i][0]._id === this.props.props.id){
+                if(this.props.recipes.randomRecipes[i][0] !== undefined && this.props.recipes.randomRecipes[i][0] !== undefined && this.props.recipes.randomRecipes[i][0]._id === this.props.props.id){
                     //content = <h1>{this.props.recipes.randomRecipes[i][0].name}</h1>
-                    content = <RecipeContent  props={{recipe:this.props.recipes.randomRecipes[i][0],
+                    content = <RecipeContent props={{recipe:this.props.recipes.randomRecipes[i][0],
                     user: this.props.auth, delete: this.props.deleteRecipeFromUser, userRecipe: this.state.recipeID}}/>
                 }
             };
