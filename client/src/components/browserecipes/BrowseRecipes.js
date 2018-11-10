@@ -35,7 +35,7 @@ class BrowseRecipes extends Component{
             content = <h5>No Recipes Found</h5>;
         }
         else{
-            content = this.props.recipes.recipesByName.map(item => <Col style={{"text-align": 'left'}}><a href={"recipe/" + item._id} key={item._id}>{item.name}</a></Col>)
+            content = this.props.recipes.recipesByName.map(item => <Col key={item._id} style={{textAlign: 'left'}}><a href={"recipe/" + item._id} key={item._id}>{item.name}</a></Col>)
         }
         return(<div>
             <NavigationBar/>

@@ -10,11 +10,11 @@ const RecipeContent = (props) => {
     const recipe = props.props.recipe;
     const userRecipe = props.props.userRecipe;
     let visible = "";
-    return(<div><ListGroupItem style={{display: visible}}tag="a" href={"/recipe/" + recipe._id}><img className="rounded" style={{height: '36px', width: '36px'}} src={recipe.img}/>{recipe.name}<Button onClick={(e) => {
+    return(<div><ListGroupItem style={{display: visible, textAlign: "left"}}tag="a" href={"/recipe/" + recipe._id}><img className="rounded" style={{height: '36px', width: '36px'}} src={recipe.img}/>{recipe.name}<Button onClick={(e) => {
         e.preventDefault();
         props.props.delete(userRecipe, id);
         window.location.reload(true);
-    }} className="rounded" color="danger">-</Button></ListGroupItem></div>)
+    }} className="rounded" color="danger"> - </Button></ListGroupItem></div>)
 };
 class RecipeItem extends Component{
     constructor(props){
