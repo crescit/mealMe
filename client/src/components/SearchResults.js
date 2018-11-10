@@ -12,7 +12,7 @@ const RecipeContent = (props) => {
     const postToUser = props.props.post;
     //TODO:change url on a tag on deployment
     return(<ListGroupItem style={{textAlign: 'left'}}tag="a" href={"http://localhost:3000/recipe/" + recipe._id}>
-        <img alt="recipe picture" src={recipe.img}style={{height: '36px', width:'36px'}}/>{recipe.name}
+        <img alt="recipe" src={recipe.img}style={{height: '36px', width:'36px'}}/>{recipe.name}
         <Button color="info"
             onClick={(e) => {
                 e.preventDefault();

@@ -62,9 +62,7 @@ const RecipeContent = (props) => {
         </div>)
 };
 class Recipe extends Component{
-    constructor(props){
-        super(props);
-    }
+
     componentDidMount(){
         if(this.props.auth.isAuthenticated === false && isEmpty(this.props.auth.user)){
             this.props.history.push('/');
