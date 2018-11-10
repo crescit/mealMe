@@ -24,6 +24,7 @@ class MyRecipes extends Component{
             content = this.props.user.user.recipes.map(item =>
                 <RecipeItem key={item.recipeid} props={{
                     id: item.recipeid,
+                    userRecipeID: item._id,
                     get: this.props.getRecipesByID
                 }}/>
             )

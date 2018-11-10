@@ -2,19 +2,26 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {getRecipeByID} from "../actions/recipeActions";
 import {isEmpty} from "../validation/is-empty";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem, Button } from 'reactstrap';
+import {deleteRecipeFromUser} from "../actions/userActions";
 
 const RecipeContent = (props) => {
-    console.log(props.props);
-    const recipe = props.props;
-    return(<div><ListGroupItem tag="a" href={"/recipe/" + recipe._id}><img className="rounded" style={{height: '36px', width: '36px'}} src={recipe.img}/>{recipe.name}</ListGroupItem></div>)
+    const id = props.props.user.user.idToken;
+    const recipe = props.props.recipe;
+    const userRecipe = props.props.userRecipe;
+    let visible = "";
+    return(<div><ListGroupItem style={{display: visible}}tag="a" href={"/recipe/" + recipe._id}><img className="rounded" style={{height: '36px', width: '36px'}} src={recipe.img}/>{recipe.name}<Button onClick={(e) => {
+        e.preventDefault();
+        props.props.delete(userRecipe, id);
+        window.location.reload(true);
+    }} className="rounded" color="danger">-</Button></ListGroupItem></div>)
 };
 class RecipeItem extends Component{
     constructor(props){
         super(props);
         this.state = {
             id: props.props.id,
-            recipe: {}
+            recipeID: props.props.userRecipeID
         };
     }
     componentDidMount(){
@@ -30,7 +37,8 @@ class RecipeItem extends Component{
             for(var i = 0; i < this.props.recipes.randomRecipes.length; i++){
                 if(this.props.recipes.randomRecipes[i][0]._id === this.props.props.id){
                     //content = <h1>{this.props.recipes.randomRecipes[i][0].name}</h1>
-                    content = <RecipeContent props={this.props.recipes.randomRecipes[i][0]}/>
+                    content = <RecipeContent  props={{recipe:this.props.recipes.randomRecipes[i][0],
+                    user: this.props.auth, delete: this.props.deleteRecipeFromUser, userRecipe: this.state.recipeID}}/>
                 }
             };
         }
@@ -48,4 +56,4 @@ const mapStateToProps = (state) => ({
     recipes: state.recipes,
     user: state.user
 });
-export default connect(mapStateToProps, {getRecipeByID})(RecipeItem);
+export default connect(mapStateToProps, {getRecipeByID, deleteRecipeFromUser})(RecipeItem);
