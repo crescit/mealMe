@@ -57,7 +57,7 @@ router.get('/:name' , (req, res) => {
     );
 });
 // @route   GET api/recipes/recipe/find/getbynumbers
-// @desc    gets all recipes with a specific term in the name
+// @desc    gets all recipes with a number in the name
 // @access  Public
 router.get('/recipe/find/getbynumbers' , (req, res) => {
 
@@ -69,7 +69,7 @@ router.get('/recipe/find/getbynumbers' , (req, res) => {
         }
     );
 });
-// @route   GET api/recipes/recipe/find/getbynumbers
+// @route   GET api/recipes/recipe/find/getbyalph/:name
 // @desc    gets all recipes with a specific term in the name
 // @access  Public
 router.get('/recipe/find/getbyalph/:name' , (req, res) => {
@@ -126,25 +126,11 @@ router.get('/findbyid/:id' , (req, res) => {
     );
 
 });
-// @route   DELETE api/recipes/:id
-// @desc    deletes recipe by a specific id
-// @access  Public
-router.delete('/:id' , (req, res) => {
-    const id = req.params.id;
-    Recipe.findOneAndDelete({_id: id}).then(() => {
-        Recipe.findOneAndDelete({_id: id}).then(() => res.json({success: true}));
-    }).catch(
-        error => {
-            return res.status(404).json({error: 'recipe not found'})
-        }
-    );
-
-});
 
 
 // @route   POST api/recipes/recipe
 // @desc    Posts a recipe to the db
-// @access  Public
+// @access  PRIVATE
 router.post('/recipe', (req, res) => {
     const {errors, isValid } = validateRecipe(req.body);
     if(!isValid){

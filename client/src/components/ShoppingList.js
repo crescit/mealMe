@@ -22,12 +22,6 @@ class ShoplistItem extends Component {
 
     render() {
         const {item, idToken, remove, color} = this.state;
-        /*
-           <ListGroupItem>{item.item}<Button onClick={() => {
-           remove(item._id, idToken);
-           window.location.reload(true);
-       }} size="sm" color="danger">-</Button></ListGroupItem>
-               */
         return (
 
             <ListGroupItem color={color} onMouseEnter={() => this.setState({color: 'danger'})} onMouseLeave={() => this.setState({color: ''})} tag="button" onClick={() => {

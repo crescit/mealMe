@@ -207,7 +207,7 @@ router.post('/shoplist', (req, res) => {
     });
 });
 
-// @route   DELETE api/user/recipes/:recipeid
+// @route   DELETE api/user/recipes/:recipeid/:token
 // @desc    deletes a recipe with a specified _id from a user
 // @access  PRIVATE
 router.delete('/recipes/:recipe_id/:token', (req, res) => {
