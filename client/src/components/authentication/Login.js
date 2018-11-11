@@ -51,7 +51,7 @@ class Login extends Component{
                 });
             }.bind(this)
         },
-        signInSuccessUrl: 'http://localhost:3000/main',
+        signInSuccessUrl: 'https://mealme2018.herokuapp.com/main',
         signInOptions: [
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             firebase.auth.EmailAuthProvider.PROVIDER_ID,

@@ -29,11 +29,11 @@ class NavigationBar extends React.Component {
     render() {
         let val = 'true';
 
-        if(window.location.href === 'http://localhost:3000/'){
+        if(window.location.href === 'https://mealme2018.herokuapp.com/'){
             val = 'none'
         }
         window.setInterval(function(){
-            if(window.location.href !== 'http://localhost:3000/'){
+            if(window.location.href !== 'https://mealme2018.herokuapp.com/'){
                 val = 'true'
             }
         }, 1000);

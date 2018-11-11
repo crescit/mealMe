@@ -11,7 +11,7 @@ const RecipeContent = (props) => {
     const idToken = props.props.idToken;
     const postToUser = props.props.post;
     //TODO:change url on a tag on deployment
-    return(<ListGroupItem style={{textAlign: 'left'}}tag="a" href={"http://localhost:3000/recipe/" + recipe._id}>
+    return(<ListGroupItem style={{textAlign: 'left'}}tag="a" href={"https://mealme2018.herokuapp.com/recipe/" + recipe._id}>
         <img alt="recipe" src={recipe.img}style={{height: '36px', width:'36px'}}/>{recipe.name}
         <Button color="info"
             onClick={(e) => {

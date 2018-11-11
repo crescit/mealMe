@@ -13,7 +13,7 @@ if(localStorage.loginInfo){
     store.dispatch(setCurrentUser(info));
 
     //TODO:change window location on deployment
-    if(window.location.href === 'http://localhost:3000/' && decoded.exp > currentTime && decoded.iat < currentTime){
+    if(window.location.href === 'https://mealme2018.herokuapp.com/' && decoded.exp > currentTime && decoded.iat < currentTime){
         window.location.href = '/main ';
     }
 
