@@ -30,6 +30,7 @@ class Login extends Component{
         signInFlow: 'popup',
         callbacks: {
             signInSuccessWithAuthResult: function(authResult){
+                console.log(authResult);
                 var credential = authResult.credential;
                 //if email login
                 if(credential === null) {
